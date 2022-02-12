@@ -1,0 +1,50 @@
+Menu="Scheduler:2a"
+Title="Mover Priority"
+Tag="gear"
+---
+<?php
+$plugin = "aeon.mover.priority";
+$cfg = parse_plugin_cfg($plugin);
+?>
+<script>
+
+</script>
+<form markdown="1" name="mover_priority" method="POST" action="/update.php" target="progressFrame">
+<input type="hidden" name="#file" value="<?=$plugin?>/<?=$plugin?>.cfg">
+_(Logging)_:
+: <select name="logging">
+<?=mk_option($cfg["logging"], "no", "No")?>
+<?=mk_option($cfg["logging"], "yes", "Yes")?>
+</select>
+
+:mover_logging_plug:
+> Enables or disables logging from this plugin.
+:end
+
+_(Mover CPU Priority)_:
+: <select name="cpuPriority">
+<?=mk_option($cfg["cpuPriority"], null, "Default")?>
+<?=mk_option($cfg["cpuPriority"], "0", "Normal")?>
+<?=mk_option($cfg["cpuPriority"], "5", "Low")?>
+<?=mk_option($cfg["cpuPriority"], "19", "Very Low")?>
+</select>
+
+:mover_cpu_priority_plug:
+> Select a configuration for the mover cpu priority, see [https://linux.die.net/man/1/nice](https://linux.die.net/man/1/nice) for more info.
+:end
+
+_(Mover IO Priority)_:
+: <select name="ioPriority">
+<?=mk_option($cfg["ioPriority"], null, "Default")?>
+<?=mk_option($cfg["ioPriority"], "-c 2 -n 0", "Normal")?>
+<?=mk_option($cfg["ioPriority"], "-c 2 -n 7", "Low")?>
+<?=mk_option($cfg["ioPriority"], "-c 3", "Idle")?>
+</select>
+
+:mover_io_priority_plug:
+> Select a configuration for the mover io priority, see [https://linux.die.net/man/1/ionice](https://linux.die.net/man/1/ionice) for more info.
+:end
+
+&nbsp;
+: <input type="submit" name="#apply" value="Apply" id="Apply"><input type="button" id="DONE" value="Done" onclick="done()">
+</form>
