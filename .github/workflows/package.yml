@@ -1,0 +1,40 @@
+name: Package
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Build plugin
+      run: |
+        cd src/
+        chmod +x *.sh
+        ./build.sh
+
+    - name: Clean archive folder
+      run: |
+        cd archive/
+        ls -1tr | head -n -2 | xargs -d '\n' rm -f --
+
+    - name: Cache Composer packages
+      id: composer-cache
+      uses: actions/cache@v2
+      with:
+        path: vendor
+        key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-php-
+
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: Package
+        path: archive/*
+        retention-days: 5

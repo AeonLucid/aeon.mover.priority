@@ -24,9 +24,6 @@ for x in '' a b c d e d f g h i j k l m n o p q r s t u v w x y z; do
     fi
 done
 
-sed -i -e "s#\(ENTITY\s*version[^\"]*\).*#\1\"${VERSION}\">#" "$PLG_FILE"
-sed -i "/##&name/a\###${VERSION}" "$PLG_FILE"
-
 mkdir -p "${TMPDIR}/"
 cd "$DIR"
 cp --parents -f $(find . -type f ! \( -iname "pkg_build.sh" -o -iname "sftp-config.json" -o -iname ".DS_Store"  \) ) "${TMPDIR}/"
