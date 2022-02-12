@@ -3,7 +3,7 @@
 <!ENTITY name      "aeon.mover.priority">
 <!ENTITY author    "AeonLucid">
 <!ENTITY version   "2022.02.12">
-<!ENTITY md5       "ac6bd4dd916fe3e55e234d5dc6cd3611">
+<!ENTITY md5       "4602545ce2734efb1dba0a31025c4413">
 <!ENTITY launch    "Settings/Scheduler">
 <!ENTITY plugdir   "/usr/local/emhttp/plugins/&name;">
 <!ENTITY github    "aeonlucid/aeon.mover.priority">
